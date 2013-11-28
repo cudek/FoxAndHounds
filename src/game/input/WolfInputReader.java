@@ -1,7 +1,9 @@
 package game.input;
 
 import game.logic.MoveDirection;
+import game.main.Game;
 
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,25 +11,39 @@ import java.io.InputStreamReader;
 public class WolfInputReader {
 
     private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private Game game;
+
+    public WolfInputReader(Game game) {
+        this.game = game;
+    }
 
     public MoveDirection getActionCommand() {
-        String direction;
+        String direction = "";
         try {
             direction = br.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        if (direction.equals("7")) {
+        return getMoveDirection(direction);
+    }
+
+    private MoveDirection getMoveDirection(String direction) {
+        if (direction.equals("3")) {
             return MoveDirection.NORTH_WEST;
         } else if (direction.equals("9")) {
             return MoveDirection.NORTH_EAST;
         } else if (direction.equals("1")) {
             return MoveDirection.SOUTH_WEST;
-        } else if (direction.equals("3")) {
+        } else if (direction.equals("7")) {
             return MoveDirection.SOUTH_EAST;
         } else {
             return null;
         }
+    }
+
+    public void handleUserAction(KeyEvent event) {
+        MoveDirection moveDirection = getMoveDirection(String.valueOf(event.getKeyChar()));
+        game.makeMove(game.getFox(), moveDirection);
     }
 }

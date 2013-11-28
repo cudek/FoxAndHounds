@@ -22,13 +22,13 @@ public class HoundActionChooser {
     // System.out.println("consult " + (q1.query() ? "succeeded" :
     // "failed"));
     //
-//    // @formatter:off
-//    Query q2 = new Query("one_move", new Term[] { 
-//                new jpl.Integer(1), new jpl.Integer(1), new jpl.Integer(1), new jpl.Integer(3), 
-//                new jpl.Integer(1), new jpl.Integer(5), new jpl.Integer(1), new jpl.Integer(7), 
-//                new jpl.Integer(2), new jpl.Integer(6),
-//                new Variable("Wx"), new Variable("Wy"), new Variable("Rx"), new Variable("Ry") });
-//    // @formatter:on
+    //    // @formatter:off
+    //    Query q2 = new Query("one_move", new Term[] { 
+    //                new jpl.Integer(1), new jpl.Integer(1), new jpl.Integer(1), new jpl.Integer(3), 
+    //                new jpl.Integer(1), new jpl.Integer(5), new jpl.Integer(1), new jpl.Integer(7), 
+    //                new jpl.Integer(2), new jpl.Integer(6),
+    //                new Variable("Wx"), new Variable("Wy"), new Variable("Rx"), new Variable("Ry") });
+    //    // @formatter:on
     //
     // if (!q2.isOpen()) {
     // q2.open();
