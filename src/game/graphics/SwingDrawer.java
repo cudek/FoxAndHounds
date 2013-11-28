@@ -1,6 +1,8 @@
 package game.graphics;
 
 import game.graphics.swing.SwingGameBoard;
+import game.input.IllegalActionException;
+import game.input.UnknownActionException;
 import game.main.Game;
 
 import java.awt.event.KeyEvent;
@@ -23,7 +25,13 @@ public class SwingDrawer implements Drawer {
     }
 
     public void keyPressed(KeyEvent event) {
-        game.getWolfInputReader().handleUserAction(event);
+        try {
+            game.getWolfInputReader().handleUserAction(event);
+            gameBoard.displayMessage("");
+        } catch (UnknownActionException exception) {
+            gameBoard.displayMessage(String.valueOf("\'" + event.getKeyChar()) + "\' - unknown command");
+        } catch (IllegalActionException exception) {
+            gameBoard.displayMessage("You can't go there!");
+        }
     }
-
 }

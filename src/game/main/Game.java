@@ -2,6 +2,7 @@ package game.main;
 
 import game.graphics.Drawer;
 import game.graphics.SwingDrawer;
+import game.input.IllegalActionException;
 import game.input.WolfInputReader;
 import game.logic.Logic;
 import game.logic.MoveDirection;
@@ -27,20 +28,19 @@ public class Game {
 
     private Drawer drawer;
 
-    private Logic logic = new Logic();
+    private Logic logic;
 
     public Game() {
         for (int i = 0; i < HOUNDS_NUMBER; ++i) {
             hounds.add(new Pawn(i * 2, 0, PawnType.HOUND));
         }
+        logic = new Logic(this);
         drawer = new SwingDrawer(this);
         wolfInputReader = new WolfInputReader(this);
     }
 
     public void start() {
         drawer.drawGameBoard();
-        MoveDirection moveDirection;
-
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
             @Override
             public boolean dispatchKeyEvent(KeyEvent e) {
@@ -49,7 +49,10 @@ public class Game {
         });
     }
 
-    public void makeMove(Pawn pawn, MoveDirection moveDirection) {
+    public void makeMove(Pawn pawn, MoveDirection moveDirection) throws IllegalActionException {
+        if (!logic.isMoveLegal(pawn, moveDirection)) {
+            throw new IllegalActionException();
+        }
         logic.move(fox, moveDirection);
         drawer.drawGameBoard();
 

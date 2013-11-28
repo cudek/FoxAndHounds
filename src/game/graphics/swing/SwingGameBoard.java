@@ -57,7 +57,7 @@ public class SwingGameBoard {
     private void initialize() {
         foxAndHoundsFrame = new JFrame();
         foxAndHoundsFrame.setTitle("Fox and Hounds");
-        foxAndHoundsFrame.setBounds(100, 100, 500, 500);
+        foxAndHoundsFrame.setBounds(100, 100, 420, 485);
         foxAndHoundsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         foxAndHoundsFrame.addKeyListener(new KeyAdapter() {
             @Override
@@ -94,7 +94,7 @@ public class SwingGameBoard {
             foxAndHoundsFrame.getContentPane().add(gameMainPanel, BorderLayout.WEST);
             {
                 gameCanvas = new GameCanvas();
-                gameCanvas.setBorder(new LineBorder(Color.BLACK, 3));
+                gameCanvas.setBorder(new LineBorder(Color.LIGHT_GRAY, 3));
                 gameCanvas.setPreferredSize();
                 gameMainPanel.add(gameCanvas);
             }
@@ -104,7 +104,12 @@ public class SwingGameBoard {
             messagesTextField.setBackground(new Color(255, 255, 255));
             foxAndHoundsFrame.getContentPane().add(messagesTextField, BorderLayout.SOUTH);
             messagesTextField.setColumns(10);
+            messagesTextField.setDisabledTextColor(Color.BLACK);
         }
+    }
+
+    public void displayMessage(String message) {
+        messagesTextField.setText(message);
     }
 
     public GameCanvas getGameCanvas() {

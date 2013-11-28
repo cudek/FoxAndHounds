@@ -42,8 +42,11 @@ public class WolfInputReader {
         }
     }
 
-    public void handleUserAction(KeyEvent event) {
+    public void handleUserAction(KeyEvent event) throws UnknownActionException, IllegalActionException {
         MoveDirection moveDirection = getMoveDirection(String.valueOf(event.getKeyChar()));
+        if (moveDirection == null) {
+            throw new UnknownActionException();
+        }
         game.makeMove(game.getFox(), moveDirection);
     }
 }
