@@ -5,9 +5,13 @@ import game.graphics.SwingDrawer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,6 +26,7 @@ public class SwingGameBoard {
     private JTextField messagesTextField;
     private GameCanvas gameCanvas;
     private SwingDrawer swingDrawer;
+    HelpDialog helpDialog;
 
     private int gamePanelWidth = 200;
     private int gamePanelHeight = 200;
@@ -55,6 +60,9 @@ public class SwingGameBoard {
      * Initialize the contents of the frame.
      */
     private void initialize() {
+        helpDialog = new HelpDialog();
+        helpDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
         foxAndHoundsFrame = new JFrame();
         foxAndHoundsFrame.setTitle("Fox and Hounds");
         foxAndHoundsFrame.setBounds(100, 100, 420, 485);
@@ -76,9 +84,22 @@ public class SwingGameBoard {
                 menuBar.add(gameMenu);
                 {
                     JMenuItem resetMenuItem = new JMenuItem("Reset");
+                    resetMenuItem.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            swingDrawer.resetGame();
+                        }
+                    });
                     gameMenu.add(resetMenuItem);
 
                     JMenuItem exitMenuItem = new JMenuItem("Exit");
+                    exitMenuItem.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            foxAndHoundsFrame.dispatchEvent(new WindowEvent(foxAndHoundsFrame,
+                                    WindowEvent.WINDOW_CLOSING));
+                        }
+                    });
                     gameMenu.add(exitMenuItem);
                 }
 
@@ -86,6 +107,15 @@ public class SwingGameBoard {
                 menuBar.add(helpMenu);
                 {
                     JMenuItem helpMenuItem = new JMenuItem("Help");
+                    helpMenuItem.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (!helpDialog.isVisible()) {
+                                helpDialog.setVisible(true);
+                            }
+                        }
+                    });
                     helpMenu.add(helpMenuItem);
                 }
             }

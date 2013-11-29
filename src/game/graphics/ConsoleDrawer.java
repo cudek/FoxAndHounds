@@ -30,9 +30,6 @@ public class ConsoleDrawer implements Drawer {
         }
     }
 
-    /* (non-Javadoc)
-     * @see game.graphics.Drawer#drawGameBoard()
-     */
     @Override
     public void drawGameBoard() {
         char currentSymbol = blackFieldSymbol;

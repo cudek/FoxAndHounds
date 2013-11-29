@@ -13,7 +13,6 @@ import java.awt.Image;
 import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -29,8 +28,6 @@ public class GameCanvas extends JPanel {
     private int fieldsInRowNumber = 8;
     private Color blackFieldColor = Color.BLACK;
     private Color whiteFieldColor = Color.WHITE;
-
-    private List<Pawn> pawns;
 
     private Image houndImage;
     private Image foxImage;
@@ -49,13 +46,7 @@ public class GameCanvas extends JPanel {
 
     public GameCanvas(Game game) {
         this();
-        setupPawns(game);
         this.game = game;
-    }
-
-    private void setupPawns(Game game) {
-        pawns = new LinkedList<Pawn>(game.getHounds());
-        pawns.add(game.getFox());
     }
 
     @Override
@@ -68,6 +59,9 @@ public class GameCanvas extends JPanel {
 
         Color currentColor = blackFieldColor;
         Pawn pawn = null;
+
+        List<Pawn> pawns = game.getPawns();
+
         int margin = getMargin();
         int x, y;
         for (int j = 7; j >= 0; --j) {
@@ -108,7 +102,6 @@ public class GameCanvas extends JPanel {
 
     public void setGame(Game game) {
         this.game = game;
-        setupPawns(game);
     }
 
     public int getBoardLength() {

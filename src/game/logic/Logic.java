@@ -1,5 +1,6 @@
 package game.logic;
 
+import game.logic.swipl.HoundActionChooser;
 import game.main.Game;
 import game.model.Pawn;
 import game.util.Utils;
@@ -9,6 +10,7 @@ import java.awt.Point;
 public class Logic {
 
     private Game game;
+    private HoundActionChooser houndActionChooser = new HoundActionChooser();
 
     public Logic(Game game) {
         this.game = game;
@@ -18,6 +20,12 @@ public class Logic {
         Point toPoint = getToPoint(pawn, direction);
         pawn.setX(toPoint.x);
         pawn.setY(toPoint.y);
+    }
+
+    public void moveHound() {
+        Movement movement = houndActionChooser.getHoundAction(game.getHounds(), game.getFox());
+        movement.getPawn().setX(movement.getToX());
+        movement.getPawn().setY(movement.getToY());
     }
 
     private Point getToPoint(Pawn pawn, MoveDirection direction) {

@@ -5,6 +5,10 @@ public class Pawn {
     private int y;
     private PawnType pawnType;
 
+    public Pawn(PawnType pawnType) {
+        this.pawnType = pawnType;
+    }
+
     public Pawn(int x, int y, PawnType pawnType) {
         this.x = x;
         this.y = y;
@@ -33,6 +37,11 @@ public class Pawn {
 
     public void setPawnType(PawnType pawnType) {
         this.pawnType = pawnType;
+    }
+
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
 }

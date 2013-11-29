@@ -26,12 +26,16 @@ public class SwingDrawer implements Drawer {
 
     public void keyPressed(KeyEvent event) {
         try {
-            game.getWolfInputReader().handleUserAction(event);
             gameBoard.displayMessage("");
+            game.getWolfInputReader().handleUserAction(event);
         } catch (UnknownActionException exception) {
             gameBoard.displayMessage(String.valueOf("\'" + event.getKeyChar()) + "\' - unknown command");
         } catch (IllegalActionException exception) {
             gameBoard.displayMessage("You can't go there!");
         }
+    }
+
+    public void resetGame() {
+        game.restart();
     }
 }
