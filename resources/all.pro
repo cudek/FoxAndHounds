@@ -37,11 +37,11 @@ a_dan(X2, Y2, Wx, Wy) :- diff(Y2, Wy, 1), diff(X2, Wx, 1).
 a_dan1(X2, Y2, Wx, Wy, Xt, Yt, Mx, My, Rx, Ry) :- a_dan(X2, Y2, Wx, Wy), moveRight(Xt, Yt, Mx, My, Rx, Ry).
 a_dan2(X2, Y2, Wx, Wy, Xt, Yt, Mx, My, Rx, Ry) :- a_dan(X2, Y2, Wx, Wy), moveLeft(Xt, Yt, Mx, My, Rx, Ry).
 
-a1(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Mx, My, Rx, Ry) :- a1_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4), moveLeft(X3, Y3, Mx, My, Rx, Ry).
-a1(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Mx, My, Rx, Ry) :- a1_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4), moveRight(X3, Y3, Mx, My, Rx, Ry).
+a1(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Mx, My, Rx, Ry) :- a1_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4), moveRight(X2, Y2, Mx, My, Rx, Ry).
+a1(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Mx, My, Rx, Ry) :- a1_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4), moveLeft(X3, Y3, Mx, My, Rx, Ry).
 a1pos(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- Y1 = Y4, Y2 = Y3, diff(X1, X2, 1), diff(X2, X3, 2), diff(X3, X4, 1).
-a1_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- a1pos(X1, Y1, X2, Y2, X3, Y3, X4, Y4), X1 < 7 - X4.
-a1_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- a1pos(X1, Y1, X2, Y2, X3, Y3, X4, Y4), X1 > 7 - X4.
+a1_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- a1pos(X1, Y1, X2, Y2, X3, Y3, X4, Y4), X1 = 1.
+a1_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- a1pos(X1, Y1, X2, Y2, X3, Y3, X4, Y4), X1 = 2.
 
 a2(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Mx, My, Rx, Ry) :- a2_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4), moveLeft(X1, Y1, Mx, My, Rx, Ry).
 a2(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Mx, My, Rx, Ry) :- a2_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4), moveRight(X4, Y4, Mx, My, Rx, Ry).
@@ -74,7 +74,7 @@ c(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- c_pos1(X1, Y1, X2, 
 c(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- c_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (c_dan2(X3, Y3, X1, Y1, Wx, Wy, Mx, My, Rx, Ry); moveRight(X3, Y3, Mx, My, Rx, Ry)).
 c_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- eq(Y2, Y3, Y4), diff(Y1, Y2, 1), diff(X1, X2, 1), diff(X2, X3, 2), diff(X3, X4, 2).
 c_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- eq(Y1, Y2, Y3), diff(Y4, Y3, 1), diff(X1, X2, 2), diff(X2, X3, 2), diff(X3, X4, 1).
-cdan(Xo, Yo, Wx, Wy) :- diff(Yo, Wy, 1), diff(Xo, Wx, 1), diff(Wx, Xo, 1).
+cdan(Xo, Yo, Wx, Wy) :- diff(Yo, Wy, 1), (diff(Xo, Wx, 1); diff(Wx, Xo, 1)).
 c_dan1(X2, Y2, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- cdan(X2, Y2, Wx, Wy), moveLeft(X4, Y4, Mx, My, Rx, Ry).
 c_dan2(X3, Y3, X1, Y1, Wx, Wy, Mx, My, Rx, Ry) :- cdan(X3, Y3, Wx, Wy), moveRight(X1, Y1, Mx, My, Rx, Ry).
 
