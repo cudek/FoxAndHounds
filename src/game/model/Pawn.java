@@ -43,5 +43,11 @@ public class Pawn {
         this.x = x;
         this.y = y;
     }
+    
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+    	return "x = " + this.x + ", y = " + this.y;
+    }
 
 }

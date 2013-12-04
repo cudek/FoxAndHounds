@@ -3,8 +3,6 @@ diff(Y1, Y2, N) :- N is Y2 - Y1. /* Y2 is N greater than Y1*/
 moveRight(Xo, Yo, Mx, My, Rx, Ry) :- Mx is Xo, My is Yo, Rx is Mx + 1, Ry is My + 1.
 moveLeft(Xo, Yo, Mx, My, Rx, Ry) :- Mx is Xo, My is Yo, Rx is Mx - 1, Ry is My + 1.
 
-buba(X, Y) :- Y = 2.
-
 move(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- start(X1, Y1, Y2, Y3, X4, Y4, Mx, My, Rx, Ry).
 move(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- a(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry).
 move(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- a1(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Mx, My, Rx, Ry).
@@ -84,8 +82,8 @@ c1_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- X1 = X2, Y3 = Y4, diff(Y1, Y2, 2), di
 c1_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- X3 = X4, Y1 = Y2, diff(Y3, Y4, 2), diff(Y2, Y4, 1), diff(X1, X2, 2), diff(X2, X3, 3).
 
 
-d(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- d_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (d_dan1(X2, Y2, X4, Y4, Wx, Wy, Mx, My, Rx, Ry); moveLeft(X2, Y2, Mx, My, Rx, Ry)).
-d(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- d_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (d_dan2(X3, Y3, X1, Y1, Wx, Wy, Mx, My, Rx, Ry); moveRight(X3, Y3, Mx, My, Rx, Ry)).
+d(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- d_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (d_dan1(X4, Y4, X2, Y2, Wx, Wy, Mx, My, Rx, Ry); moveLeft(X2, Y2, Mx, My, Rx, Ry)).
+d(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- d_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (d_dan2(X1, Y1, X3, Y3, Wx, Wy, Mx, My, Rx, Ry); moveRight(X3, Y3, Mx, My, Rx, Ry)).
 dpos(X1, X2, Y2, X3, Y3, X4) :- Y2 = Y3, diff(X1, X2, 1), diff(X2, X3, 2), diff(X3, X4, 1), X4 = 5.
 d_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- dpos(X1, X2, Y2, X3, Y3, X4), diff(Y1, Y2, 1), diff(Y3, Y4, 1).
 d_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- dpos(X1, X2, Y2, X3, Y3, X4), diff(Y2, Y1, 1), diff(Y4, Y3, 1).
@@ -98,8 +96,8 @@ d1_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- diff(Y1, Y2, 2), diff(Y3, Y2, 1), dif
 d1_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- diff(Y3, Y4, 2), diff(Y3, Y2, 1), diff(Y2, Y1, 1), X3 = X4, diff(X2, X3, 3), diff(X1, X2, 1).
 
 
-e(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- e_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (e_dan1(X2, Y2, X4, Y4, Wx, Wy, Mx, My, Rx, Ry); moveRight(X1, Y1, Mx, My, Rx, Ry)).
-e(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- e_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (e_dan2(X3, Y3, X1, Y1, Wx, Wy, Mx, My, Rx, Ry); moveLeft(X4, Y4, Mx, My, Rx, Ry)).
+e(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- e_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (e_dan1(X4, Y4, Wx, Wy, Mx, My, Rx, Ry); moveRight(X1, Y1, Mx, My, Rx, Ry)).
+e(X1, Y1, X2, Y2, X3, Y3, X4, Y4, Wx, Wy, Mx, My, Rx, Ry) :- e_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4), (e_dan2(X1, Y1, Wx, Wy, Mx, My, Rx, Ry); moveLeft(X4, Y4, Mx, My, Rx, Ry)).
 e_pos1(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- diff(Y1, Y2, 2), diff(Y3, Y2, 1), Y2 = Y4, diff(X1, X2, 2), diff(X2, X3, 1), diff(X3, X4, 1).
 e_pos2(X1, Y1, X2, Y2, X3, Y3, X4, Y4) :- Y1 = Y3, diff(Y2, Y1, 1), diff(Y4, Y3, 2), diff(X1, X2, 1), diff(X2, X3, 1), diff(X3, X4, 2).
 edan(Xo, Yo, Wx, Wy) :- diff(Yo, Wy, 2), Xo = Wx.
